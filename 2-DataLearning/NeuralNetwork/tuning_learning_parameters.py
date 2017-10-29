@@ -57,7 +57,7 @@ for j in range(len(learning_rates)):
 print('Optimal learning rate:', best_learning_rate)
 
 plt.tight_layout()
-plt.savefig(os.path.join('OutputData', 'q2_train_validation_error_GD.png'))
+plt.savefig(os.path.join('OutputData', 'alpha_tuning_train_validation_error_GD.png'))
 plt.show()
 
 #### retrain model with best_learning_rate
@@ -70,5 +70,5 @@ plt.plot(test_cost)
 plt.xlabel('epoch')
 plt.ylabel('mean square error')
 plt.title('Test errors at optimal alpha=%.5f' % best_learning_rate)
-plt.savefig(os.path.join('OutputData', 'q2_test_error_optimal_alpha.png'))
+plt.savefig(os.path.join('OutputData', 'alpha_tuning_test_error_optimal_alpha.png'))
 plt.show()

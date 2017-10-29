@@ -1,7 +1,6 @@
 from __future__ import print_function
-from __future__ import print_function
 import matplotlib.pyplot as plt
-import numpy as np
+import os
 
 from data_input import prepare_data, divide_into_folds
 from network_train import nn_learning
@@ -59,7 +58,7 @@ for j in range(len(layers_size_s)):
 print ('Optimal hidden layer size:', best_hidden_layer_size)
 
 plt.tight_layout()
-plt.savefig('q3_train_validation_error.png')
+plt.savefig(os.path.join('OutputData', 'hidden_node_tuning_train_validation_error.png'))
 plt.show()
 
 #### retrain model with best_learning_rate
@@ -73,5 +72,5 @@ plt.xlabel('epoch')
 plt.ylabel('mean square error')
 plt.legend()
 plt.title('Test errors at optimal hidden size=%d' % best_hidden_layer_size)
-plt.savefig('q3_test_error_optimal_alpha.png')
+plt.savefig(os.path.join('OutputData', 'hidden_node_tuning_test_error_optimal_alpha.png'))
 plt.show()
