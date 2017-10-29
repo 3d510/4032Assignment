@@ -24,8 +24,8 @@ def shuffle_data(samples, labels):
     return samples, labels
 
 
-def prepare_data():
-    X_data, Y_data = read_data(os.path.join('InputData', 'movie_metadata_processed.csv'))
+def prepare_data(filename):
+    X_data, Y_data = read_data(filename)
     X_data, Y_data = shuffle_data(X_data, Y_data)
     no_examples = X_data.shape[0]
     # separate train and test data

@@ -1,13 +1,16 @@
 from __future__ import print_function
 import matplotlib.pyplot as plt
-import os
+import os, sys
 
 from data_input import prepare_data, divide_into_folds
 from network_train import nn_learning
 
 #### Use 5-fold validation to decide best model - find optimal alpha
 
-trainX, trainY, testX, testY = prepare_data()
+csv_file = 'movie_metadata_processed.csv'
+if sys.argv >= 2:
+    csv_file = sys.argv[1]
+trainX, trainY, testX, testY = prepare_data(os.path.join('InputData', csv_file))
 no_folds = 5
 dataset = divide_into_folds(trainX, trainY, no_folds=no_folds)
 
