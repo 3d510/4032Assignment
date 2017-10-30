@@ -22,6 +22,7 @@ plt.savefig(os.path.join('OutputData', 'feature_selection.png'))
 plt.show()
 
 columns = [selected[1] for selected in selected_features]
+columns.append('imdb_score')
 df = movies[columns]
 df.to_csv(os.path.join('OutputData', 'movie_metadata_feature_selected.csv'), index=False, encoding='utf-8')
 
