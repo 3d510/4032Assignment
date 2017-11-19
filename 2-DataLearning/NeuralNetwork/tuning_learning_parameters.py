@@ -8,7 +8,7 @@ from network_train import nn_learning
 #### Use 5-fold validation to decide best model - find optimal alpha
 
 csv_file = 'movie_metadata_processed.csv'
-if sys.argv >= 2:
+if len(sys.argv) >= 2:
     csv_file = sys.argv[1]
 trainX, trainY, testX, testY = prepare_data(os.path.join('InputData', csv_file))
 

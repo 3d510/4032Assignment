@@ -2,6 +2,7 @@ from __future__ import print_function
 import numpy as np
 import theano
 import theano.tensor as T
+from sklearn.metrics import r2_score
 from data_input import shuffle_data
 
 np.random.seed(10)
@@ -24,6 +25,7 @@ def init_weights(n_in, n_out):
 
 def nn_learning(trainX, trainY, testX, testY, learning_rate, layers_size, batch_size, epochs):
 
+    decay = 1e-5
     x = T.matrix('x')
     d = T.matrix('d')
 
@@ -43,7 +45,7 @@ def nn_learning(trainX, trainY, testX, testY, learning_rate, layers_size, batch_
     y2 = T.nnet.sigmoid(u2) * 10
     pred = y2
 
-    cost = T.abs_(T.mean(T.sqr(d - pred)))
+    cost = T.abs_(T.mean(T.sqr(d - pred))) + decay * (T.sum(T.sqr(w1) + T.sum(T.sqr(w2))))
     accuracy = T.abs_(T.mean(d - pred))
 
     # define gradients - back propagation
@@ -117,6 +119,7 @@ def nn_learning(trainX, trainY, testX, testY, learning_rate, layers_size, batch_
     b1.set_value(best_b1)
 
     best_pred, best_cost, best_accuracy = test(testX, testY)
+    print('Score: %.2f' % r2_score(testY, best_pred))
     print('Minimum error: %.1f, Best accuracy: %.1f, Number of Iterations: %d' % (best_cost, best_accuracy, best_iter))
 
     return {

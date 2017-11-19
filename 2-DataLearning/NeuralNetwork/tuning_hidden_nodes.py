@@ -15,7 +15,7 @@ no_folds = 5
 dataset = divide_into_folds(trainX, trainY, no_folds=no_folds)
 
 input_layer_size = trainX.shape[1]
-hidden_layer_size_s = [20, 30, 40, 50, 60]
+hidden_layer_size_s = [30, 60 ,90]
 layers_size_s = [[input_layer_size, hidden_layer_size, 1] for hidden_layer_size in hidden_layer_size_s]
 
 learning_rate = 1e-5
